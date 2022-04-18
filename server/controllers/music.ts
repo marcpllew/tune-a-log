@@ -11,11 +11,25 @@ router.get('/', (req, res) => {
     });
 });
 
-// router.get('/:style', (req, res) => {
-//     Music.getByStyle(req.params.style).then((music: any) => {
+// new route to check
+router.get('/:artist_name', (req, res) => {
+    Music.getByArtistName(req.params.artist_name).then((music: any) => {
+        res.json(music);
+    });
+});
+
+router.get('/:style', (req, res) => {
+    Music.getByStyle(req.params.style).then((music: any) => {
+        res.json(music);
+    });
+});
+
+// new route to check
+// router.get(`/api/music/search?artist=${searchArtist}&style=${searchStyle}`, (req, res) => {
+//     Music.getAll(req.query?.search || '').then((music: any) => {
 //         res.json(music);
 //     });
-// });
+// })
 
 router.get('/:id', (req, res) => {
     Music.getById(req.params.id).then((music: any) => {
