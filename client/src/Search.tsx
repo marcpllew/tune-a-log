@@ -2,15 +2,18 @@ import React from 'react'
 import { useEffect, useState } from 'react';
 import axios from "axios";
 import { Avatar, Box, Button, Container, CssBaseline, Grid, TextField, Typography } from '@mui/material';
+
 // import { MusicInfo } from "./MusicInfo";
 
 
 
 const Search = () => {
-    const [musicList, setMusicList] = useState([]);
+    // const [musicList, setMusicList] = useState([]);
+    const [musicList, setMusicList] = useState<any[]>([])
     const [searchArtist, setSearchArtist] = useState("");
     const [searchStyle, setSearchStyle] = useState("");
-
+    
+    
     useEffect(() => {
         axios
             .get("/api/music")
@@ -36,7 +39,7 @@ const Search = () => {
         
           {/* <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }} /> */}
           <Typography component="h1" variant="h5">
-            Search Artist
+            Search Artist/Style
           </Typography>
           <Box component="form" noValidate onSubmit={() => {}} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
@@ -51,6 +54,7 @@ const Search = () => {
                   id="artist_name"
                   label="Artist Name"
                   name="artist_name"
+                  type="text"
                   autoComplete="artist_name"
                   autoFocus
                   value={searchArtist}
@@ -89,8 +93,9 @@ const Search = () => {
                 .then((response: any) => response.data)
                 .then((data: any) => {
                     setMusicList(data);
+                    
                 });
-                 
+            
             }
           
             }
@@ -99,27 +104,40 @@ const Search = () => {
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
 
-            
             >
-              
               Search
-            
-            </Button> 
-           
-            
-            {/* <MusicInfo searchArtist={searchStyle} searchStyle={''} /> */}
 
-            {/* <h2>Current Music:</h2> {musicList.map((music: any) => (
+            </Button> 
+
+            <div><h2>Current Music:</h2> {musicList.filter((music: any) => {
+              if (searchArtist === "" || searchStyle === "") {
+                return "This Artist or Style was not found"
+              } else if (music.artist_name.toLowerCase().includes(searchArtist.toLowerCase()) || music.style.toLowerCase().includes(searchStyle.toLowerCase()) ){
+                return music.artist_name
+              }               
+            }).map((music: any) => (
+              <div className='tunes' >
                     <p>{music.artist_name}: {music.style}</p>
+                    </div>
+                    
                 ))}
-                 */}
+                </div>
+
+                {/* <h2>Current Music:</h2> {musicList.map((music: any) => (
+                    <p>{music.artist_name}: {music.style}</p>
+                ))} */}
+            
+                
                 
           </Box>
           
         </Box>
         
       </Container>
+
+   
   )
+
   
 }
 

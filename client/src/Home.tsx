@@ -4,8 +4,35 @@ import axios from "axios";
 import { Avatar, Box, Button, Container, CssBaseline, Grid, TextField, Typography } from '@mui/material';
 
 
-function Home() {
+function Home(props: any) {
+    const [value, setValue] = useState('');
+    const [musicList, setMusicList] = useState([]);
+    const [artistValue, setArtistValue] = useState("");
+    const [styleValue, setStyleValue] = useState("");
+    const [miscellaneousValue, setMiscellaneousValue] = useState("");
+
+    const handleChangeArtistValue = (event: any) => {
+        setArtistValue(event.target.value);
+    };
+
+    const handleChangeStyleValue = (event: any) => {
+        setStyleValue(event.target.value);
+    };
+
+    const handleChangeMiscellaneousValue = (event: any) => {
+        setMiscellaneousValue(event.target.value);
+    };
+
+    const handleSubmit = () => {
+        props.onNewSubmit(value);
+    };
+
+    const handleKeypress = (e: any) => {
+            handleSubmit();
+    };
+
   return (
+    
   <Container component="main" maxWidth="xs">
       <CssBaseline />
         <Box
@@ -33,6 +60,9 @@ function Home() {
                   label="Artist Name"
                   name="artist_name"
                   autoComplete="artist_name"
+                  value={artistValue}
+                  onChange={handleChangeArtistValue}
+                  onKeyPress={handleKeypress}
                 />
               </Grid>
 
@@ -44,6 +74,9 @@ function Home() {
                   label="Style"
                   name="style"
                   autoComplete="style"
+                  value={styleValue}
+                  onChange={handleChangeStyleValue}
+                  onKeyPress={handleKeypress}
                 />
               </Grid>
 
@@ -55,11 +88,15 @@ function Home() {
                   label="Miscellaneous"
                   name="miscellaneous"
                   autoComplete="miscellaneous"
+                  value={miscellaneousValue}
+                  onChange={handleChangeMiscellaneousValue}
+                  onKeyPress={handleKeypress}
                 />
               </Grid>
             
             </Grid>
             <Button
+              onClick={handleSubmit}
               type="submit"
               fullWidth
               variant="contained"

@@ -18,6 +18,7 @@ router.get('/:artist_name', (req, res) => {
     });
 });
 
+// new route to check
 router.get('/:style', (req, res) => {
     Music.getByStyle(req.params.style).then((music: any) => {
         res.json(music);
