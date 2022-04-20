@@ -2,12 +2,13 @@ import "./App.css";
 import Home from './Home';
 import Search from './Search';
 import { BrowserRouter, Link, Routes, Route } from "react-router-dom";
-
+import CustomizedMenus  from './Header';
 
 
 function App() {
   return (
     <div>
+      <CustomizedMenus />
       <BrowserRouter>
         <nav>
           <ul>

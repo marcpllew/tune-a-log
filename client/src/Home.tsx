@@ -23,8 +23,20 @@ function Home(props: any) {
         setMiscellaneousValue(event.target.value);
     };
 
-    const handleSubmit = () => {
-        props.onNewSubmit(value);
+    const handleSubmit = () => {// axios request
+          // error logic to go here
+          axios
+                .post(`/api/music/`, {"artist_name": artistValue,
+"style": styleValue,
+"miscellaneous": miscellaneousValue
+})
+                .then((response: any) => response.data)
+                .then((data: any) => {
+                    setArtistValue(data);
+                    setStyleValue(data);
+                    setMiscellaneousValue(data);
+                    
+                });
     };
 
     const handleKeypress = (e: any) => {
@@ -61,8 +73,12 @@ function Home(props: any) {
                   name="artist_name"
                   autoComplete="artist_name"
                   value={artistValue}
+                  // onKeyPress={handleKeypress}
                   onChange={handleChangeArtistValue}
-                  onKeyPress={handleKeypress}
+                  
+
+                      
+
                 />
               </Grid>
 
@@ -75,8 +91,12 @@ function Home(props: any) {
                   name="style"
                   autoComplete="style"
                   value={styleValue}
-                  onChange={handleChangeStyleValue}
-                  onKeyPress={handleKeypress}
+                  // onKeyPress={handleKeypress}
+                    onChange={(event: any) => {
+                    setStyleValue(event.target.value);
+                    
+                }}
+                  
                 />
               </Grid>
 
@@ -89,8 +109,11 @@ function Home(props: any) {
                   name="miscellaneous"
                   autoComplete="miscellaneous"
                   value={miscellaneousValue}
-                  onChange={handleChangeMiscellaneousValue}
-                  onKeyPress={handleKeypress}
+                  // onKeyPress={handleKeypress}
+                    onChange={(event: any) => {
+                    setMiscellaneousValue(event.target.value);
+                    
+                }}
                 />
               </Grid>
             
