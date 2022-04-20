@@ -12,14 +12,14 @@ router.get('/', (req, res) => {
 });
 
 // new route to check
-router.get('/:artist_name', (req, res) => {
+router.get('/artist_name/:artist_name', (req, res) => {
     Music.getByArtistName(req.params.artist_name).then((music: any) => {
         res.json(music);
     });
 });
 
 // new route to check
-router.get('/:style', (req, res) => {
+router.get('/style/:style', (req, res) => {
     Music.getByStyle(req.params.style).then((music: any) => {
         res.json(music);
     });

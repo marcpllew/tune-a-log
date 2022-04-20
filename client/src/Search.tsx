@@ -65,6 +65,7 @@ const Search = () => {
                 }}
                 />
                 
+                
             </Grid>
 
                 <Grid item xs={12}>
@@ -98,7 +99,7 @@ const Search = () => {
                 });
             
             }
-          
+        
             }
             type="submit"
             fullWidth
@@ -106,58 +107,40 @@ const Search = () => {
             sx={{ mt: 3, mb: 2 }}
 
             >
-              Search
+                Search
 
-            </Button> 
+                </Button> 
 
-            <div className='tunes' >
-            <h2>Current Music:</h2> {musicList.filter((music: any) => {
-              if (searchArtist === "" && searchStyle === "") {
-                return "This Artist or Style was not found"
-              } else if (music.artist_name.toLowerCase().includes(searchArtist.toLowerCase()) && music.style.toLowerCase().includes(searchStyle.toLowerCase()) ){
-                return music.artist_name
-              }
+                <div className='tunes' >
+                <h2>Current Music:</h2> {musicList.filter((music: any) => {
+                if (searchArtist === "" && searchStyle === "") {
+                    return true
+                } else if (music.artist_name.toLowerCase().includes(searchArtist.toLowerCase()) && music.style.toLowerCase().includes(searchStyle.toLowerCase()) ){
+                    return true
+                }
+
                 
             }).map((music: any) => (
-              
+              // logic search criteria
                     <p>{music.artist_name}: {music.style}</p>
                     
                 )
                 )}
-                </div>
-
-                {/* <h2>Current Music:</h2> {musicList.map((music: any) => (
-                    <p>{music.artist_name}: {music.style}</p>
-                ))} */}
+                </div>          
+                            
+            </Box>
             
-                
-                
-          </Box>
-          
         </Box>
         
-      </Container>
+        </Container>
 
-   
-  )
+    
+    )
 
-  
+    
 }
+
 
 export default Search;
 
 
-// return (
-//         <div className="Home">
-//             <header className="App-header">
-//                 {/* <p> test 1,2,3: </p> */}
-//                 <p>music: {musicList.map((music: any) => (
-//                     <p>{music.artist_name}</p>
-//                 ))} </p>
-//                 {/* <p> {serverDate}</p>  */}
-//                 <div className='content'>
-
-//             </div>
-//             </header>
-//             </div>
-//     )
