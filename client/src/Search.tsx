@@ -9,8 +9,8 @@ import { Avatar, Box, Button, Container, CssBaseline, Grid, TextField, Typograph
 
 const Search = () => {
     // const [musicList, setMusicList] = useState([]);
-    const [musicList, setMusicList] = useState<any>([]);
-    // const [musicList, setMusicList] = useState<any[]>([])
+    // const [musicList, setMusicList] = useState<any>([]);
+    const [musicList, setMusicList] = useState<any[]>([])
     const [searchArtist, setSearchArtist] = useState("");
     const [searchStyle, setSearchStyle] = useState("");
     
@@ -110,7 +110,7 @@ const Search = () => {
 
             </Button> 
 
-
+            <div className='tunes' >
             <h2>Current Music:</h2> {musicList.filter((music: any) => {
               if (searchArtist === "" && searchStyle === "") {
                 return "This Artist or Style was not found"
@@ -119,10 +119,12 @@ const Search = () => {
               }
                 
             }).map((music: any) => (
-              <div className='tunes' >
+              
                     <p>{music.artist_name}: {music.style}</p>
-                    </div>
-                ))}
+                    
+                )
+                )}
+                </div>
 
                 {/* <h2>Current Music:</h2> {musicList.map((music: any) => (
                     <p>{music.artist_name}: {music.style}</p>
