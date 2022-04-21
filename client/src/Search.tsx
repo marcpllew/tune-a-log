@@ -122,7 +122,7 @@ const Search = () => {
                 
             }).map((music: any) => (
               // logic search criteria
-                    <p>{music.artist_name}: {music.style}</p>
+                    <p>{music.id}: {music.artist_name}: {music.style}</p>
                     
                 )
                 )}

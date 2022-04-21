@@ -53,8 +53,9 @@ const Music = {
                 miscellaneous,
             ])
             .then((response: any) => {
+                console.log(response)
                 return response.rows ? response.rows[0] : {};
-            });
+            }).catch(err => {return{error:err.message}});
     },
     delete: (id: any) => {
         const query = `DELETE FROM music WHERE id = $1`;
