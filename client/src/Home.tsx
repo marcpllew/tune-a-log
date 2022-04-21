@@ -2,6 +2,7 @@ import React from 'react'
 import { useEffect, useState } from 'react';
 import axios from "axios";
 import { Avatar, Box, Button, Container, CssBaseline, Grid, TextField, Typography } from '@mui/material';
+import { response } from 'express';
 
 
 function Home(props: any) {
@@ -23,25 +24,27 @@ function Home(props: any) {
         setMiscellaneousValue(event.target.value);
     };
 
-    const handleSubmit = () => {// axios request
+    const handleSubmit = (event: any) => {// axios request
           // error logic to go here
+          event.preventDefault()
           axios
-                .post(`/api/music/`, {"artist_name": artistValue,
-"style": styleValue,
+                .post(`/api/music/`, {"artist_name": artistValue|| undefined,
+"style": styleValue|| undefined,
 "miscellaneous": miscellaneousValue
 })
-                .then((response: any) => response.data)
-                .then((data: any) => {
-                    setArtistValue(data);
-                    setStyleValue(data);
-                    setMiscellaneousValue(data);
+                .then((response: any) => {console.log(response.data)})
+                
+                // .then((data: any) => {
+                //     setArtistValue(data);
+                //     setStyleValue(data);
+                //     setMiscellaneousValue(data);
                     
-                });
+                // });
     };
 
-    const handleKeypress = (e: any) => {
-            handleSubmit();
-    };
+    // const handleKeypress = (e: any) => {
+    //         handleSubmit();
+    // };
 
   return (
     
@@ -91,7 +94,6 @@ function Home(props: any) {
                   name="style"
                   autoComplete="style"
                   value={styleValue}
-                  // onKeyPress={handleKeypress}
                     onChange={(event: any) => {
                     setStyleValue(event.target.value);
                     

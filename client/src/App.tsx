@@ -2,21 +2,25 @@ import "./App.css";
 import Home from './Home';
 import Search from './Search';
 import { BrowserRouter, Link, Routes, Route } from "react-router-dom";
-import CustomizedMenus  from './Header';
+// import CustomizedMenus  from './Header';
+import ButtonAppBar  from './Header';
+
+
 
 
 function App() {
   return (
+    
     <div>
-      <CustomizedMenus />
+      <ButtonAppBar />
       <BrowserRouter>
         <nav>
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/">Store new Tunes </Link>
             </li>
             <li>
-              <Link to="/search">Search</Link>
+              <Link to="/search">Search Tunes</Link>
             </li>
           </ul>
         </nav>
