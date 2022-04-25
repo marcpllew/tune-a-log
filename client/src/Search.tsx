@@ -2,9 +2,18 @@ import React from 'react'
 import { useEffect, useState } from 'react';
 import axios from "axios";
 import { Avatar, Box, Button, Container, CssBaseline, Grid, TextField, Typography } from '@mui/material';
+import StyleDropdown from './StyleInputField';
 
-// import { MusicInfo } from "./MusicInfo";
-
+// alternate search function??
+// const handleSubmit = (event: any) => {// axios request
+//           event.preventDefault()
+//           axios
+//                 .get(`/api/music/`, {"artist_name": searchArtist|| undefined,
+// "style": searchStyle|| undefined
+// })
+//                 .then((response: any) => {console.log(response.data)})
+                
+//     };
 
 
 const Search = () => {
@@ -15,14 +24,18 @@ const Search = () => {
     const [searchStyle, setSearchStyle] = useState("");
     
     
-    useEffect(() => {
+    // change to a function, call function on search click
+    const SearchDb = () => {
+  
         axios
-            .get("/api/music")
+            .get(`/api/music?style=${searchStyle}&artist_name=${searchArtist}`)
             .then((response: any) => response.data)
             .then((data: any) => {
                 setMusicList(data);
             });
-    }, []);
+  }
+
+
 
 
     return (
@@ -69,7 +82,9 @@ const Search = () => {
             </Grid>
 
                 <Grid item xs={12}>
-                <TextField
+                  < StyleDropdown styleValue={searchStyle} handleChangeStyleValue={setSearchStyle} />
+
+                {/* <TextField
                   required
                   fullWidth
                   id="style"
@@ -82,7 +97,7 @@ const Search = () => {
                     
                     
                 }}
-                />
+                /> */}
               </Grid>
 
             
@@ -90,44 +105,60 @@ const Search = () => {
 
             <Button
             onClick={(event: any) => {
-              axios
-                .get(`/api/music/search?artist=${searchArtist}&style=${searchStyle}`)
-                .then((response: any) => response.data)
-                .then((data: any) => {
-                    setMusicList(data);
+              SearchDb()
+              // axios
+
+              //   .get(`/api/music/search?artist=${searchArtist}&style=${searchStyle}`)
+              //   .then((response: any) => response.data)
+              //   .then((data: any) => {
+              //       setMusicList(data);
                     
-                });
-            
-            }
-        
-            }
-            type="submit"
+              //   });
+            }}
+                      
             fullWidth
             variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-
-            >
-                Search
-
+            sx={{
+              mt: 3,
+              mb: 2,
+              // backgroundColor: "#64dd17"
+            }}
+            >Search
                 </Button> 
 
                 <div className='tunes' >
-                <h2>Current Music:</h2> {musicList.filter((music: any) => {
+                {musicList.filter((music: any) => {
                 if (searchArtist === "" && searchStyle === "") {
-                    return true
+                    return false
                 } else if (music.artist_name.toLowerCase().includes(searchArtist.toLowerCase()) && music.style.toLowerCase().includes(searchStyle.toLowerCase()) ){
                     return true
                 }
 
-                
-            }).map((music: any) => (
+                })
+            .map((music: any) => (
               // logic search criteria
-                    <p>{music.id}: {music.artist_name}: {music.style}</p>
                     
+                    <p key={music.id}> <p style={{ fontSize: 25, color: "#4a54f1", textAlign: "center" }}> {music.artist_name}</p> <p style={{ fontSize: 17, color: "#4a54f1", textAlign: "center"}}>{music.style}</p>
+                    {/* <p style={{ fontSize: 15, textAlign: "center" }}>{music.miscellaneous}</p>  */}
+                    <Button
+            onClick={(event: any) => {
+              axios
+                .delete(`/api/music/${music.id}`)
+            }}
+
+            
+            fullWidth
+            variant="outlined"
+            sx={{ mt: 3, mb: 5 }}
+
+            >
+                delete
+                </Button> 
+  </p>
+
                 )
                 )}
                 </div>          
-                            
             </Box>
             
         </Box>

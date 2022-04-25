@@ -1,13 +1,34 @@
 import db from '../database/db';
 
 const Music = {
-    getAll: (artist_name: any) => {
-        const query = 'SELECT * FROM MUSIC WHERE artist_name ILIKE $1';
 
-        return db.query(query, [`%${artist_name}%`]).then((response: any) => {
-            return response.rows;
-        });
-    },
+    getAll: (style: any, artist_name: any) => {
+  let query = 'SELECT * FROM music';
+  let params = [];
+
+  if (style !== null && artist_name !== null) {
+    let whereClauses = [];
+    if (style !== null) {
+        params.push(`%${style}%`);
+        whereClauses.push('style ILIKE $' + params.length + 1) ;
+    }
+    if (artist_name !== null) {
+        params.push(`%${artist_name}%`);
+        whereClauses.push('artist_name ILIKE $' + params.length + 1) ;
+    }
+    query += ' WHERE ' + whereClauses.join(' AND ');
+  }
+
+  return db.query(query, params).then((response: any) => response.rows);
+},
+
+    // getAll: (style: any, artist_name: any) => {
+    //     const query = 'SELECT * FROM MUSIC WHERE artist_name ILIKE $1';
+
+    //     return db.query(query, [`%${artist_name}%`]).then((response: any) => {
+    //         return response.rows;
+    //     });
+    // },
 
     getById: (id: any) => {
         const query = `SELECT * FROM MUSIC WHERE id = $1`;

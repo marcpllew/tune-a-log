@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import { format } from 'path';
 import { Avatar, ThemeProvider } from '@mui/material';
 //
@@ -19,6 +20,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import PagesIcon from '@mui/icons-material/Pages';
 // import BrowserRouter from './App'
 // import Route from './App'
+import {Link} from 'react-router-dom'
 
 
 
@@ -132,12 +134,12 @@ export function CustomizedMenus() {
         onClose={handleClose}
       >
         <MenuItem onClick={handleClose} disableRipple>
-          <PagesIcon />
-          Store new Tunes
+          <MusicNoteIcon />
+          <Link to="/">Add new Tunes </Link>
         </MenuItem>
         <MenuItem onClick={handleClose} disableRipple>
-          <FileCopyIcon />
-          Search Tunes
+          <MusicNoteIcon />
+          <Link to="/search">Search</Link>
         </MenuItem>
         <Divider sx={{ my: 0.5 }} />
         
