@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect, useState } from 'react';
 import axios from "axios";
 import { Avatar, Box, Button, Container, CssBaseline, Grid, TextField, Typography } from '@mui/material';
-import { response } from 'express';
+import StyleDropdown from './StyleInputField';
 
 
 function Home(props: any) {
@@ -16,12 +16,14 @@ function Home(props: any) {
         setArtistValue(event.target.value);
     };
 
-    const handleChangeStyleValue = (event: any) => {
-        setStyleValue(event.target.value);
+    const handleChangeStyleValue = (newValue: any) => {
+        setStyleValue(newValue);
+         console.log(newValue)
     };
 
     const handleChangeMiscellaneousValue = (event: any) => {
         setMiscellaneousValue(event.target.value);
+       
     };
 
     const handleSubmit = (event: any) => {// axios request
@@ -34,17 +36,7 @@ function Home(props: any) {
 })
                 .then((response: any) => {console.log(response.data)})
                 
-                // .then((data: any) => {
-                //     setArtistValue(data);
-                //     setStyleValue(data);
-                //     setMiscellaneousValue(data);
-                    
-                // });
     };
-
-    // const handleKeypress = (e: any) => {
-    //         handleSubmit();
-    // };
 
   return (
     
@@ -75,8 +67,7 @@ function Home(props: any) {
                   label="Artist Name"
                   name="artist_name"
                   autoComplete="artist_name"
-                  value={artistValue}
-                  // onKeyPress={handleKeypress}
+                  value={artistValue}                
                   onChange={handleChangeArtistValue}
                   
 
@@ -86,20 +77,26 @@ function Home(props: any) {
               </Grid>
 
                 <Grid item xs={12}>
-                <TextField
+
+                < StyleDropdown styleValue={styleValue} handleChangeStyleValue={setStyleValue}/>
+               
+                
+
+                {/* <TextField
                   required
                   fullWidth
-                  id="style"
-                  label="Style"
+                  id="style"  
+                  label="Style"  
                   name="style"
                   autoComplete="style"
                   value={styleValue}
+                  onChange={handleChangeStyleValue}
                     onChange={(event: any) => {
                     setStyleValue(event.target.value);
                     
                 }}
                   
-                />
+                /> */}
               </Grid>
 
               <Grid item xs={12}>
@@ -111,14 +108,14 @@ function Home(props: any) {
                   name="miscellaneous"
                   autoComplete="miscellaneous"
                   value={miscellaneousValue}
-                  // onKeyPress={handleKeypress}
-                    onChange={(event: any) => {
-                    setMiscellaneousValue(event.target.value);
+                  onChange={handleChangeMiscellaneousValue}
+                //     onChange={(event: any) => {
+                //     setMiscellaneousValue(event.target.value);
                     
-                }}
+                // }}
                 />
               </Grid>
-            
+        
             </Grid>
             <Button
               onClick={handleSubmit}
@@ -129,6 +126,7 @@ function Home(props: any) {
             >
               Create entry
             </Button>
+            
           </Box>
         </Box>
       </Container>

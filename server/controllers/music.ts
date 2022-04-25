@@ -6,7 +6,7 @@ import Music from '../models/music';
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    Music.getAll(req.query?.search || '').then((music: any) => {
+    Music.getAll(req.query?.style || null, req.query?.artist_name || null).then((music: any) => {
         res.json(music);
     });
 });
@@ -24,13 +24,6 @@ router.get('/style/:style', (req, res) => {
         res.json(music);
     });
 });
-
-// new route to check
-// router.get(`/api/music/search?artist=${searchArtist}&style=${searchStyle}`, (req, res) => {
-//     Music.getAll(req.query?.search || '').then((music: any) => {
-//         res.json(music);
-//     });
-// })
 
 router.get('/:id', (req, res) => {
     Music.getById(req.params.id).then((music: any) => {

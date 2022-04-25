@@ -1,20 +1,46 @@
 import "./App.css";
 import Home from './Home';
 import Search from './Search';
-import { BrowserRouter, Link, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Link, Routes, Route, } from "react-router-dom";
 // import CustomizedMenus  from './Header';
 import ButtonAppBar  from './Header';
+import PagesIcon  from './Header';
+import * as React from 'react';
+import CssBaseline from '@mui/material/CssBaseline';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { Paper } from '@mui/material';
+import { useState } from 'react';
 
 
+
+const darkTheme = createTheme({
+  
+  palette: {
+    // mode: 'dark',
+    // mode: darkMode ? 'dark': 'light',
+  },
+});
 
 
 function App() {
+  const [darkMode, setDarkMode] = useState(false);
+  // const theme = createTheme({
+  //   palette: {
+  //     main: red[500],
+  //   },
+  //   },
+  // );
+
   return (
     
+    <ThemeProvider theme={darkTheme}>
+    <Paper style={{ height: '100vh'}}>
     <div>
-      <ButtonAppBar />
+      
       <BrowserRouter>
-        <nav>
+      <ButtonAppBar />
+
+        {/* <nav>
           <ul>
             <li>
               <Link to="/">Store new Tunes </Link>
@@ -23,7 +49,7 @@ function App() {
               <Link to="/search">Search Tunes</Link>
             </li>
           </ul>
-        </nav>
+        </nav> */}
         
         <Routes>
           <Route path="/" element={<Home />} />
@@ -32,10 +58,15 @@ function App() {
         </Routes>
       </BrowserRouter>
     </div>
+        </Paper>
+        </ThemeProvider>
   );
 }
 
 
 export default App; 
+
+
+
 
 
