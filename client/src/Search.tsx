@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import axios from "axios";
 import { Avatar, Box, Button, Container, CssBaseline, Grid, TextField, Typography } from '@mui/material';
 import StyleDropdown from './StyleInputField';
+import { id } from 'date-fns/locale';
 
 // alternate search function??
 // const handleSubmit = (event: any) => {// axios request
@@ -24,15 +25,18 @@ const Search = () => {
     const [searchStyle, setSearchStyle] = useState("");
     
     
+    
     // change to a function, call function on search click
     const SearchDb = () => {
-  
+      
         axios
             .get(`/api/music?style=${searchStyle}&artist_name=${searchArtist}`)
             .then((response: any) => response.data)
             .then((data: any) => {
                 setMusicList(data);
             });
+            
+            
   }
 
 
@@ -82,7 +86,8 @@ const Search = () => {
             </Grid>
 
                 <Grid item xs={12}>
-                  < StyleDropdown styleValue={searchStyle} handleChangeStyleValue={setSearchStyle} />
+                  < StyleDropdown styleValue={searchStyle} handleChangeStyleValue={setSearchStyle}
+                  />
 
                 {/* <TextField
                   required
@@ -105,7 +110,9 @@ const Search = () => {
 
             <Button
             onClick={(event: any) => {
+              
               SearchDb()
+              
               // axios
 
               //   .get(`/api/music/search?artist=${searchArtist}&style=${searchStyle}`)
@@ -142,8 +149,11 @@ const Search = () => {
                     {/* <p style={{ fontSize: 15, textAlign: "center" }}>{music.miscellaneous}</p>  */}
                     <Button
             onClick={(event: any) => {
+              // setMusicList()
               axios
-                .delete(`/api/music/${music.id}`)
+                .delete(`/api/music/${music.id}`).then(() => {
+                  SearchDb()
+                })
             }}
 
             

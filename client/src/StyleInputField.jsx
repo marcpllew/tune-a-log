@@ -15,21 +15,22 @@ const onChange = (event, newValue) => {
     <Stack spacing={2} sx={{ width: 400 }}>
       <Autocomplete
         id="style dropdown"
+        inputValue={styleValue}
         freeSolo={true}
         options={definedMusicStyles.map((option) => option.style)}
         onChange={onChange}
+        
         renderInput={(params) => <TextField  value={styleValue} {...params} label="Style*" />}
       />
- 
-     
+    
     </Stack>
   );
 }
 
 
 const definedMusicStyles = [
- 
-  
+
+  // { style: '' },
   { style: 'Psych-Rock' },
   { style: 'Latin' },
   { style: 'Regge Jazz' },
