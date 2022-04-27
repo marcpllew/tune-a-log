@@ -12,7 +12,7 @@ import {
     TextField,
     Typography,
 } from '@mui/material';
-import StyleDropdown from './components/StyleInputField';
+import StyleDropdown from './screens/StyleInputField';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 // import SearchInfoDb from './components/SearchInfo';

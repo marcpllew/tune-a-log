@@ -2,11 +2,16 @@ import React from 'react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-
+type musicType = {
+    id: number;
+    artist_name: string;
+    style: string;
+    miscellaneous: string;
+};
 export default function SearchInfo() {
     const params = useParams();
     //  const [musicList, setMusicList] = useState<any[]>([]);
-    const [music, setMusic] = useState(null);
+    const [music, setMusic] = useState<musicType | null>(null);
     const [artistId, setArtistId] = useState('');
 
     // const [searchStyle, setSearchStyle] = useState('');
