@@ -11,7 +11,9 @@ import {
     TextField,
     Typography,
 } from '@mui/material';
-import StyleDropdown from './StyleInputField';
+import StyleDropdown from './components/StyleInputField';
+import MusicNoteIcon from '@mui/icons-material/MusicNote';
+import CardContent from '@mui/material/CardContent';
 
 function Home(props: any) {
     const [value, setValue] = useState('');
@@ -60,6 +62,7 @@ function Home(props: any) {
                 }
 
                 setShowMessage(true);
+                setTimeout(() => setShowMessage(false), 5000);
             })
             .catch((response: any) => {
                 setShowErrorMessage(true);
@@ -81,7 +84,8 @@ function Home(props: any) {
                 // message to be rendored here
             >
                 {/* <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }} /> */}
-                <Typography component='h1' variant='h5'>
+                <MusicNoteIcon />
+                <Typography component='h1' variant='h4'>
                     Store new Tunes
                 </Typography>
                 <Box
@@ -129,7 +133,7 @@ function Home(props: any) {
 
                         <Grid item xs={12}>
                             <TextField
-                                required
+                                // required
                                 fullWidth
                                 id='miscellaneous'
                                 label='Miscellaneous'
@@ -154,8 +158,24 @@ function Home(props: any) {
                     </Button>
                     {/* <Box> {showMessage && <p>Artist input success</p> }</Box> */}
                 </Box>
-                {showMessage && <p>Artist input success</p>}
-                {showErrorMessage && <p>Fill in all fields</p>}
+
+                <React.Fragment>
+                    <CardContent>
+                        <Typography variant='h5' component='div'>
+                            {showMessage && <p>Artist input success!</p>}
+                        </Typography>
+                    </CardContent>
+                </React.Fragment>
+
+                <React.Fragment>
+                    <CardContent>
+                        <Typography variant='h5' component='div'>
+                            {showErrorMessage && (
+                                <p>Error: Fill in manditory fields</p>
+                            )}
+                        </Typography>
+                    </CardContent>
+                </React.Fragment>
             </Box>
         </Container>
     );
