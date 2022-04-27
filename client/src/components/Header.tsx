@@ -128,7 +128,7 @@ export function CustomizedMenus() {
                     <Typography variant='inherit'>
                         <Link
                             style={{
-                                color: 'blue',
+                                color: 'grey',
                             }}
                             to='/'>
                             Add new Tunes{' '}
@@ -139,7 +139,7 @@ export function CustomizedMenus() {
                     <MusicNoteIcon />
                     <Link
                         style={{
-                            color: 'blue',
+                            color: 'grey',
                         }}
                         to='/search'>
                         Search

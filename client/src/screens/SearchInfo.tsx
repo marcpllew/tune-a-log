@@ -1,7 +1,10 @@
 import React from 'react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+
 type musicType = {
     id: number;
     artist_name: string;
@@ -10,25 +13,13 @@ type musicType = {
 };
 export default function SearchInfo() {
     const params = useParams();
-    //  const [musicList, setMusicList] = useState<any[]>([]);
     const [music, setMusic] = useState<musicType | null>(null);
     const [artistId, setArtistId] = useState('');
 
-    // const [searchStyle, setSearchStyle] = useState('');
-    // const [searchMiscellaneous, setSearchMiscellaneous] = useState('');
-
-    // const SearchInfoDb = () => {
     useEffect(() => {
-        axios
-            .get(
-                `/api/music/${params.id}`
-                // `/api/music?id=${params.id}&artist_name=${params.artist_name}`
-
-                // `/api/music?id=${params.id}&artist_name=${params.artist_name}&style=${params.style}&miscellaneous=${params.miscellaneous}`
-            )
-            .then((response) => {
-                setMusic(response.data);
-            });
+        axios.get(`/api/music/${params.id}`).then((response) => {
+            setMusic(response.data);
+        });
     }, [params.id]);
     console.log(params);
 
@@ -36,24 +27,33 @@ export default function SearchInfo() {
         <div>
             {music ? (
                 <div>
-                    <p>{music.id}</p>
-                    <p>{music.artist_name}</p>
-                    <p>{music.style}</p>
-                    <p>{music.miscellaneous}</p>
+                    <React.Fragment>
+                        <CardContent>
+                            <Typography
+                                sx={{ mb: 1.5 }}
+                                variant='h5'
+                                component='div'>
+                                Artist: {music.artist_name}
+                            </Typography>
+                            <Typography sx={{ mb: 1.5 }} color='text.secondary'>
+                                Style: {music.style}
+                            </Typography>
+                            <Typography variant='body2'>
+                                Extra info: {music.miscellaneous}
+                                <br />
+                            </Typography>
+                        </CardContent>
+                    </React.Fragment>
                 </div>
             ) : (
                 <div>Something</div>
             )}
         </div>
     );
-    // };
 }
-
-// axios
-//     .get(
-//         `/api/music?id=${music.id}&style=${searchStyle}&artist_name=${searchArtist}&miscellaneous=${searchMiscellaneous}`
-//     )
-//     .then((response) => response.data)
-//     .then((data) => {
-//         setMusicList(data);
-//     });
+{
+    /* <p>{music.id}</p>
+                    <p>{music.artist_name}</p>
+                    <p>{music.style}</p>
+                    <p>{music.miscellaneous}</p> */
+}
