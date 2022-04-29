@@ -35,7 +35,7 @@ function App() {
 
     return (
         <ThemeProvider theme={theme}>
-            <Paper style={{ height: '100vh' }}>
+            <Paper style={{ minHeight: '100vh' }}>
                 <div>
                     <BrowserRouter>
                         <ButtonAppBar />

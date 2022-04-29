@@ -26,8 +26,6 @@ This app helps to quickly and easily catalogue the musical discoveries you’ve 
 -   From here was just building out all the MVP's
 -   Finally giving the app some styling using Material UI. Which is the first time i have used tis styling framework.
 
-# Installation instructions
-
 # Future implementation
 
 -   Connects to a Music API
@@ -39,3 +37,21 @@ This app helps to quickly and easily catalogue the musical discoveries you’ve 
 -   Alert when deleting entries
 
 ![image](./Screen%20Shot%202022-04-28%20at%2020.05.45%20pm.png)
+
+# Installation instructions
+
+-   Clone down repository from the above link
+-   Auto install all dependencies for client and server:
+    -   npm install from client and server folder
+    -   use: npm run dev to run development server for client and server
+
+# data base
+
+-   create a data base named 'music_app' and copy the following table into database. From schema.sql
+
+    CREATE TABLE music(
+    id SERIAL PRIMARY KEY,  
+     artist_name TEXT not null,
+    style Text not null,  
+     miscellaneous TEXT
+    );
