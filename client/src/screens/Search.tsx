@@ -18,8 +18,6 @@ import CardActions from '@mui/material/CardActions';
 // import SearchInfoDb from './components/SearchInfo';
 import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
-import { id } from 'date-fns/locale';
-// import OutlinedCard from './SearchDisplayCard';
 
 const Search = () => {
     const [musicList, setMusicList] = useState<any[]>([]);
@@ -56,7 +54,6 @@ const Search = () => {
                 }}>
                 <LibraryMusicIcon />
 
-                {/* <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }} /> */}
                 <Typography component='h2' variant='h4'>
                     Search Artist/Style
                 </Typography>
@@ -89,43 +86,18 @@ const Search = () => {
                                 styleValue={searchStyle}
                                 handleChangeStyleValue={setSearchStyle}
                             />
-
-                            {/* <TextField
-                  required
-                  fullWidth
-                  id="style"
-                  label="Style"
-                  name="style"
-                  autoComplete="style"
-                  value={searchStyle}
-                  onChange={(event: any) => {
-                    setSearchStyle(event.target.value);
-                    
-                    
-                }}
-                /> */}
                         </Grid>
                     </Grid>
 
                     <Button
                         onClick={(event: any) => {
                             SearchDb();
-
-                            // axios
-
-                            //   .get(`/api/music/search?artist=${searchArtist}&style=${searchStyle}`)
-                            //   .then((response: any) => response.data)
-                            //   .then((data: any) => {
-                            //       setMusicList(data);
-
-                            //   });
                         }}
                         fullWidth
                         variant='contained'
                         sx={{
                             mt: 3,
                             mb: 2,
-                            // backgroundColor: "#64dd17"
                         }}>
                         Search
                     </Button>
@@ -148,25 +120,20 @@ const Search = () => {
                                 }
                             })
                             .map((music: any) => (
-                                // logic search criteria
-
-                                // OutlinedCard()
                                 <React.Fragment>
                                     <CardContent>
                                         <p key={music.id}> </p>
                                         <Typography
-                                            // align='inherit'
                                             variant='h5'
                                             component='div'>
                                             {music.artist_name}
                                         </Typography>
                                         <Typography
                                             sx={{ mb: 1.5 }}
-                                            // align='inherit'
                                             color='text.secondary'>
                                             {music.style}
                                         </Typography>
-                                        {/* <p style={{ fontSize: 15, textAlign: "center" }}>{music.miscellaneous}</p>  */}
+
                                         <CardActions>
                                             <Button
                                                 style={{
@@ -177,7 +144,6 @@ const Search = () => {
                                                 }}
                                                 size='small'
                                                 onClick={(event: any) => {
-                                                    // setMusicList()
                                                     axios
                                                         .delete(
                                                             `/api/music/${music.id}`
@@ -192,7 +158,6 @@ const Search = () => {
                                                 delete
                                             </Button>
                                             <Link
-                                                // to={`/searchInfo/${music.id}${music.artist_name}${music.style}${music.miscellaneous}`}>
                                                 to={`/searchInfo/${music.id}`}>
                                                 <Button
                                                     fullWidth

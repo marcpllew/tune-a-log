@@ -5,17 +5,12 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
-import { format } from 'path';
 import { Avatar, ThemeProvider } from '@mui/material';
 //
 import { styled, alpha } from '@mui/material/styles';
 import Menu, { MenuProps } from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import Divider from '@mui/material/Divider';
-import FileCopyIcon from '@mui/icons-material/FileCopy';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import PagesIcon from '@mui/icons-material/Pages';
 import { Link } from 'react-router-dom';
 
 export default function ButtonAppBar() {
@@ -145,13 +140,6 @@ export function CustomizedMenus() {
                         Search
                     </Link>
                 </MenuItem>
-
-                {/* <Divider sx={{ my: 0.5 }} /> */}
-
-                {/* <MenuItem onClick={handleClose} disableRipple>
-                    <MoreHorizIcon />
-                    More
-                </MenuItem> */}
             </StyledMenu>
         </div>
     );

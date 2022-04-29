@@ -28,7 +28,6 @@ const Music = {
         });
     },
 
-    // new query to check
     getByArtistName: (artist_name: any) => {
         const query = `SELECT * FROM MUSIC WHERE artist_name = $1`;
         return db.query(query, [artist_name]).then((response: any) => {
@@ -36,7 +35,6 @@ const Music = {
         });
     },
 
-    // new query to check
     getByStyle: (style: any) => {
         const query = `SELECT * FROM MUSIC WHERE style = $1`;
         return db.query(query, [style]).then((response: any) => {
