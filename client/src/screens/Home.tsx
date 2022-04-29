@@ -11,7 +11,7 @@ import {
     TextField,
     Typography,
 } from '@mui/material';
-import StyleDropdown from './components/StyleInputField';
+import StyleDropdown from './StyleInputField';
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import CardContent from '@mui/material/CardContent';
 
