@@ -32,13 +32,17 @@ export default function SearchInfo() {
                             <Typography
                                 sx={{ mb: 1.5 }}
                                 variant='h5'
+                                align='center'
                                 component='div'>
                                 Artist: {music.artist_name}
                             </Typography>
-                            <Typography sx={{ mb: 1.5 }} color='text.secondary'>
+                            <Typography
+                                sx={{ mb: 1.5 }}
+                                color='text.secondary'
+                                align='center'>
                                 Style: {music.style}
                             </Typography>
-                            <Typography variant='body2'>
+                            <Typography variant='body2' align='center'>
                                 Extra info: {music.miscellaneous}
                                 <br />
                             </Typography>

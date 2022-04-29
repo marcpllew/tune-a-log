@@ -1,6 +1,6 @@
 import './App.css';
 import Home from './screens/Home';
-import Search from './Search';
+import Search from './screens/Search';
 import SearchInfo from './screens/SearchInfo';
 import { BrowserRouter, Link, Routes, Route } from 'react-router-dom';
 // import CustomizedMenus  from './Header';

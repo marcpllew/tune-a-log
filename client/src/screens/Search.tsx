@@ -12,7 +12,7 @@ import {
     TextField,
     Typography,
 } from '@mui/material';
-import StyleDropdown from './screens/StyleInputField';
+import StyleDropdown from './StyleInputField';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 // import SearchInfoDb from './components/SearchInfo';
@@ -155,12 +155,14 @@ const Search = () => {
                                     <CardContent>
                                         <p key={music.id}> </p>
                                         <Typography
+                                            // align='inherit'
                                             variant='h5'
                                             component='div'>
                                             {music.artist_name}
                                         </Typography>
                                         <Typography
                                             sx={{ mb: 1.5 }}
+                                            // align='inherit'
                                             color='text.secondary'>
                                             {music.style}
                                         </Typography>
@@ -194,12 +196,9 @@ const Search = () => {
                                                 to={`/searchInfo/${music.id}`}>
                                                 <Button
                                                     fullWidth
+                                                    size='small'
                                                     variant='contained'
-                                                    sx={{
-                                                        mt: 3,
-                                                        mb: 2,
-                                                        // backgroundColor: "#64dd17"
-                                                    }}>
+                                                    sx={{ mt: 0, mb: 5 }}>
                                                     Artist info
                                                 </Button>
                                             </Link>
