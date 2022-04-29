@@ -3,7 +3,6 @@ import Home from './screens/Home';
 import Search from './screens/Search';
 import SearchInfo from './screens/SearchInfo';
 import { BrowserRouter, Link, Routes, Route } from 'react-router-dom';
-// import CustomizedMenus  from './Header';
 import ButtonAppBar from './components/Header';
 import PagesIcon from './components/Header';
 import * as React from 'react';
@@ -24,9 +23,6 @@ function App() {
     const theme = createTheme({
         palette: {
             mode: darkMode ? 'dark' : 'light',
-            // text: {
-            //     primary: 'rgba(255,0,0,0.87)',
-            // },
         },
         typography: {
             fontFamily: 'Roboto',
@@ -40,15 +36,9 @@ function App() {
                     <BrowserRouter>
                         <ButtonAppBar />
 
-                        {/* <IconButton
-                            onClick={() => setDarkMode((prev) => !prev)}>
-                            Toggle Dark Mode
-                        </IconButton> */}
-
                         <IconButton
                             sx={{ ml: 1 }}
                             onClick={() => setDarkMode((prev) => !prev)}
-                            // onClick={() => setDarkMode((prev) => !prev)}
                             color='inherit'>
                             {theme.palette.mode === 'dark' ? (
                                 <Brightness7Icon />

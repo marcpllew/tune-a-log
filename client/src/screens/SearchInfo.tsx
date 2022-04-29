@@ -56,8 +56,4 @@ export default function SearchInfo() {
     );
 }
 {
-    /* <p>{music.id}</p>
-                    <p>{music.artist_name}</p>
-                    <p>{music.style}</p>
-                    <p>{music.miscellaneous}</p> */
 }

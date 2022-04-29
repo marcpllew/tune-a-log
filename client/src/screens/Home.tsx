@@ -38,10 +38,6 @@ function Home(props: any) {
     };
 
     const handleSubmit = (event: any) => {
-        // axios request
-        // create piece of state to call showMessage
-        // when showMessage is true redor a message
-        // error logic to go here
         setShowErrorMessage(false);
         setShowMessage(false);
         setArtistValue('');
@@ -79,11 +75,7 @@ function Home(props: any) {
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
-                }}
-
-                // message to be rendored here
-            >
-                {/* <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }} /> */}
+                }}>
                 <MusicNoteIcon />
                 <Typography component='h1' variant='h4'>
                     Store new Tunes
@@ -113,22 +105,6 @@ function Home(props: any) {
                                 styleValue={styleValue}
                                 handleChangeStyleValue={setStyleValue}
                             />
-
-                            {/* <TextField
-                  required
-                  fullWidth
-                  id="style"  
-                  label="Style"  
-                  name="style"
-                  autoComplete="style"
-                  value={styleValue}
-                  onChange={handleChangeStyleValue}
-                    onChange={(event: any) => {
-                    setStyleValue(event.target.value);
-                    
-                }}
-                  
-                /> */}
                         </Grid>
 
                         <Grid item xs={12}>
@@ -141,10 +117,6 @@ function Home(props: any) {
                                 autoComplete='miscellaneous'
                                 value={miscellaneousValue}
                                 onChange={handleChangeMiscellaneousValue}
-                                //     onChange={(event: any) => {
-                                //     setMiscellaneousValue(event.target.value);
-
-                                // }}
                             />
                         </Grid>
                     </Grid>
@@ -156,7 +128,6 @@ function Home(props: any) {
                         sx={{ mt: 3, mb: 2 }}>
                         Create entry
                     </Button>
-                    {/* <Box> {showMessage && <p>Artist input success</p> }</Box> */}
                 </Box>
 
                 <React.Fragment>

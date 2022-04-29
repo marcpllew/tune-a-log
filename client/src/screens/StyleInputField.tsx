@@ -33,10 +33,10 @@ export default function StyleDropdown({
 }
 
 const definedMusicStyles = [
-    // { style: '' },
     { style: 'Psych-Rock' },
     { style: 'Psych-Pop' },
     { style: 'Latin' },
+    { style: 'Traditional' },
     { style: 'Regge Jazz' },
     { style: 'Electro jazz' },
     { style: 'Electro' },
@@ -46,7 +46,6 @@ const definedMusicStyles = [
     { style: 'Jazz' },
     { style: 'Psych-Folk' },
     { style: 'RnB' },
-    { style: 'Traditional' },
     { style: 'Funk/Soul' },
     { style: 'Funk/Disco' },
 ];
