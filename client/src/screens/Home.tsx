@@ -58,7 +58,7 @@ function Home(props: any) {
                 }
 
                 setShowMessage(true);
-                setTimeout(() => setShowMessage(false), 5000);
+                setTimeout(() => setShowMessage(false), 4000);
             })
             .catch((response: any) => {
                 setShowErrorMessage(true);
