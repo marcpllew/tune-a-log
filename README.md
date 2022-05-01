@@ -10,7 +10,7 @@ This app helps to quickly and easily catalogue the musical discoveries you’ve 
 
 -   Github link: https://github.com/marcpllew/tune-a-log
 
-# Teck Used
+# Tech Used
 
 -   Git hub
 -   TypeScript
