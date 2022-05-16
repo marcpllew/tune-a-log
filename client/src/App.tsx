@@ -13,6 +13,8 @@ import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import { red } from '@mui/material/colors';
+import SignUp from './screens/SignUp';
+import SignIn from './screens/SignIn';
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
@@ -50,6 +52,8 @@ function App() {
                         <Routes>
                             <Route path='/' element={<Home />} />
                             <Route path='search' element={<Search />} />
+                            <Route path='signup' element={<SignUp />} />
+                            <Route path='signin' element={<SignIn />} />
                             <Route
                                 path='searchInfo/:id'
                                 element={<SearchInfo />}

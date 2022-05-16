@@ -19,9 +19,9 @@ type musicType = {
     miscellaneous: string;
 };
 
-export default function AlertDialog(props: any) {
+export default function AlertDialog({ SearchDb, music }: any) {
     const [open, setOpen] = React.useState(false);
-    const [musicList, setMusicList] = useState<any[]>([]);
+
     const [searchArtist, setSearchArtist] = useState('');
     const [searchStyle, setSearchStyle] = useState('');
     // const [music, setMusic] = useState<musicType | any>([]);
@@ -40,15 +40,6 @@ export default function AlertDialog(props: any) {
 
     const handleClose = () => {
         setOpen(false);
-    };
-
-    const SearchDb = () => {
-        axios
-            .get(`/api/music?style=${searchStyle}&artist_name=${searchArtist}`)
-            .then((response: any) => response.data)
-            .then((data: any) => {
-                setMusicList(data);
-            });
     };
 
     return (
@@ -74,7 +65,7 @@ export default function AlertDialog(props: any) {
                         <Button
                             onClick={(event: any) => {
                                 axios
-                                    .delete(`/api/music/${props.music.id}`)
+                                    .delete(`/api/music/${music.id}`)
                                     .then(() => {
                                         SearchDb();
                                         setOpen(false);
