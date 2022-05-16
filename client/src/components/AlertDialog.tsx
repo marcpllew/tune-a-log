@@ -5,9 +5,34 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import axios from 'axios';
+// import SearchDb from '../screens/Search'
+// test imports
 
-export default function AlertDialog() {
+import { useEffect, useState } from 'react';
+// test imports
+
+type musicType = {
+    id: number;
+    artist_name: string;
+    style: string;
+    miscellaneous: string;
+};
+
+export default function AlertDialog(props: any) {
     const [open, setOpen] = React.useState(false);
+    const [musicList, setMusicList] = useState<any[]>([]);
+    const [searchArtist, setSearchArtist] = useState('');
+    const [searchStyle, setSearchStyle] = useState('');
+    // const [music, setMusic] = useState<musicType | any>([]);
+    const [artistId, setArtistId] = useState('');
+    // const params = useParams();
+
+    // useEffect(() => {
+    //     axios.get(`/api/music/${params.id}`).then((response) => {
+    //         setMusic(response.data);
+    //     });
+    // }, [params.id]);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -17,29 +42,63 @@ export default function AlertDialog() {
         setOpen(false);
     };
 
+    const SearchDb = () => {
+        axios
+            .get(`/api/music?style=${searchStyle}&artist_name=${searchArtist}`)
+            .then((response: any) => response.data)
+            .then((data: any) => {
+                setMusicList(data);
+            });
+    };
+
     return (
         <div>
-            <Button variant='outlined' onClick={handleClickOpen}>
-                Delete
-            </Button>
-            <Dialog
-                open={open}
-                onClose={handleClose}
-                aria-labelledby='alert-dialog-title'
-                aria-describedby='alert-dialog-description'>
-                <DialogTitle id='alert-dialog-title'>Delete</DialogTitle>
-                <DialogContent>
-                    <DialogContentText id='alert-dialog-description'>
-                        Are you sure you would like to delete entry?
-                    </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleClose}>Disagree</Button>
-                    <Button onClick={handleClose} autoFocus>
-                        Agree
-                    </Button>
-                </DialogActions>
-            </Dialog>
+            <React.Fragment>
+                {/* <BrowserRouter> */}
+
+                <Button variant='outlined' onClick={handleClickOpen}>
+                    Delete
+                </Button>
+                <Dialog
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby='alert-dialog-title'
+                    aria-describedby='alert-dialog-description'>
+                    <DialogTitle id='alert-dialog-title'>Delete</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText id='alert-dialog-description'>
+                            Are you sure you would like to delete entry?
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button
+                            onClick={(event: any) => {
+                                axios
+                                    .delete(`/api/music/${props.music.id}`)
+                                    .then(() => {
+                                        SearchDb();
+                                        setOpen(false);
+                                        // window.location.reload();
+                                    });
+                            }}>
+                            Agree
+                        </Button>
+                        <Button onClick={handleClose} autoFocus>
+                            Disagree
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+            </React.Fragment>
         </div>
     );
+}
+
+{
+    /* <div className='tunes'>
+    {musicList
+        .filter((music: any) => {
+        })
+        .map((music: any) => (
+        ))}
+</div>; */
 }

@@ -6,6 +6,7 @@ import {
     Avatar,
     Box,
     Button,
+    ButtonGroup,
     Container,
     CssBaseline,
     Grid,
@@ -15,14 +16,28 @@ import {
 import StyleDropdown from './StyleInputField';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
+import DeleteIcon from '@mui/icons-material/Delete';
+
 // import SearchInfoDb from './components/SearchInfo';
 import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
+import AlertDialog from '../components/AlertDialog';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
+// end of delete button function
 const Search = () => {
     const [musicList, setMusicList] = useState<any[]>([]);
     const [searchArtist, setSearchArtist] = useState('');
     const [searchStyle, setSearchStyle] = useState('');
+    const [notify, setNotify] = useState({
+        isOpen: false,
+        message: '',
+        type: '',
+    });
 
     const SearchDb = () => {
         axios
@@ -33,14 +48,14 @@ const Search = () => {
             });
     };
 
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-    const open = Boolean(anchorEl);
-    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorEl(event.currentTarget);
-    };
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
+    // const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    // const open = Boolean(anchorEl);
+    // const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    //     setAnchorEl(event.currentTarget);
+    // };
+    // const handleClose = () => {
+    //     setAnchorEl(null);
+    // };
 
     return (
         <Container component='main' maxWidth='xs'>
@@ -133,30 +148,11 @@ const Search = () => {
                                             color='text.secondary'>
                                             {music.style}
                                         </Typography>
-
                                         <CardActions>
-                                            <Button
-                                                style={{
-                                                    maxWidth: '60px',
-                                                    maxHeight: '30px',
-                                                    minWidth: '30px',
-                                                    minHeight: '30px',
-                                                }}
-                                                size='small'
-                                                onClick={(event: any) => {
-                                                    axios
-                                                        .delete(
-                                                            `/api/music/${music.id}`
-                                                        )
-                                                        .then(() => {
-                                                            SearchDb();
-                                                        });
-                                                }}
-                                                fullWidth
-                                                variant='outlined'
-                                                sx={{ mt: 0, mb: 5 }}>
-                                                delete
-                                            </Button>
+                                            {/* start of delete button */}
+                                            {/* <AlertDialog /> */}
+                                            <AlertDialog music={music} />
+                                            {/* end of delete button */}
                                             <Link
                                                 to={`/searchInfo/${music.id}`}>
                                                 <Button
@@ -171,6 +167,7 @@ const Search = () => {
                                     </CardContent>
                                 </React.Fragment>
                             ))}
+
                         {/* </BrowserRouter> */}
                     </div>
                 </Box>
@@ -180,3 +177,24 @@ const Search = () => {
 };
 
 export default Search;
+
+// {
+//     <Button
+//     style={{
+//         maxWidth: '60px',
+//         maxHeight: '30px',
+//         minWidth: '30px',
+//         minHeight: '30px',
+//     }}
+//     size='small'
+//     onClick={(event: any) => {
+//         axios.delete(`/api/music/${music.id}`).then(() => {
+//             SearchDb();
+//         });
+//     }}
+//     fullWidth
+//     variant='outlined'
+//     sx={{ mt: 0, mb: 5 }}>
+//     delete
+// </Button>
+// }

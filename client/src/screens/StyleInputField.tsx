@@ -37,6 +37,7 @@ const definedMusicStyles = [
     { style: 'Psych-Pop' },
     { style: 'Latin' },
     { style: 'Traditional' },
+    { style: 'Indie Rock' },
     { style: 'Regge Jazz' },
     { style: 'Electro jazz' },
     { style: 'Electro' },
