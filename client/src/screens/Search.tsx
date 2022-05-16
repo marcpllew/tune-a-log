@@ -151,7 +151,10 @@ const Search = () => {
                                         <CardActions>
                                             {/* start of delete button */}
                                             {/* <AlertDialog /> */}
-                                            <AlertDialog music={music} />
+                                            <AlertDialog
+                                                music={music}
+                                                SearchDb={SearchDb}
+                                            />
                                             {/* end of delete button */}
                                             <Link
                                                 to={`/searchInfo/${music.id}`}>

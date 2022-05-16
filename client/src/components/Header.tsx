@@ -140,6 +140,26 @@ export function CustomizedMenus() {
                         Search
                     </Link>
                 </MenuItem>
+                <MenuItem onClick={handleClose} disableRipple>
+                    <MusicNoteIcon />
+                    <Link
+                        style={{
+                            color: 'grey',
+                        }}
+                        to='/signup'>
+                        Sign Up
+                    </Link>
+                </MenuItem>
+                <MenuItem onClick={handleClose} disableRipple>
+                    <MusicNoteIcon />
+                    <Link
+                        style={{
+                            color: 'grey',
+                        }}
+                        to='/signin'>
+                        Sign In
+                    </Link>
+                </MenuItem>
             </StyledMenu>
         </div>
     );
