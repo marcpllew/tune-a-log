@@ -6,8 +6,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import axios from 'axios';
-// import SearchDb from '../screens/Search'
-// test imports
+import DeleteIcon from '@mui/icons-material/Delete';
 
 import { useEffect, useState } from 'react';
 // test imports
@@ -47,9 +46,16 @@ export default function AlertDialog({ SearchDb, music }: any) {
             <React.Fragment>
                 {/* <BrowserRouter> */}
 
-                <Button variant='outlined' onClick={handleClickOpen}>
+                <Button
+                    fullWidth
+                    startIcon={<DeleteIcon />}
+                    variant='outlined'
+                    size='small'
+                    sx={{ mt: 0, mb: 5 }}
+                    onClick={handleClickOpen}>
                     Delete
                 </Button>
+
                 <Dialog
                     open={open}
                     onClose={handleClose}

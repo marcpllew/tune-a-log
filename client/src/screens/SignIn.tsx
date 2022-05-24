@@ -57,6 +57,7 @@ export default function SignIn() {
                         Sign in
                     </Typography>
                     <Box
+                        // sx={{ bgcolor: 'secondary.main' }}
                         component='form'
                         onSubmit={handleSubmit}
                         noValidate
@@ -71,6 +72,22 @@ export default function SignIn() {
                             autoComplete='username'
                             autoFocus
                         />
+
+                        {/* <TextField
+                            required
+                            fullWidth
+                            id='artist_name'
+                            label='Artist Name'
+                            name='artist_name'
+                            type='text'
+                            autoComplete='artist_name'
+                            autoFocus
+                            value={searchArtist}
+                            onChange={(event: any) => {
+                                setSearchArtist(event.target.value);
+                            }}
+                        /> */}
+
                         <TextField
                             margin='normal'
                             required
