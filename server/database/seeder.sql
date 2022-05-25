@@ -17,3 +17,5 @@ insert into music (artist_name, style, miscellaneous) values ('Aphex twin', 'Ele
 
 insert into music (artist_name, style, miscellaneous) values ('Forq', 'Electro jazz', 'Contemporary, experimental, improv');
 
+
+insert into users (username, password, email ) values ('Mr Krinkle', 'nutbutter', 'krinkle@gmail.com');
