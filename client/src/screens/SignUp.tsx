@@ -12,6 +12,9 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { response } from 'express';
 
 function Copyright(props: any) {
     return (
@@ -30,14 +33,31 @@ function Copyright(props: any) {
 const theme = createTheme();
 
 export default function SignUp() {
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
+    const [usernameReg, setusernameReg] = useState('');
+    const [emailReg, setemailReg] = useState('');
+    const [passwordReg, setpasswordReg] = useState('');
+
+    const register = () => {
+        axios
+            .post('http://localhost:3000/api/users', {
+                username: usernameReg,
+                email: emailReg,
+                password: passwordReg,
+            })
+            .then((response: any) => {
+                console.log(response);
+            });
     };
+
+    // const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    //     event.preventDefault();
+    //     const data = new FormData(event.currentTarget);
+    //     console.log({
+    //         username: data.get('username'),
+    //         email: data.get('email'),
+    //         password: data.get('password'),
+    //     });
+    // };
 
     return (
         <ThemeProvider theme={theme}>
@@ -59,7 +79,7 @@ export default function SignUp() {
                     <Box
                         component='form'
                         noValidate
-                        onSubmit={handleSubmit}
+                        // onSubmit={handleSubmit}
                         sx={{ mt: 3 }}>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
@@ -71,6 +91,9 @@ export default function SignUp() {
                                     id='username'
                                     label='User Name'
                                     autoFocus
+                                    onChange={(e) => {
+                                        setusernameReg(e.target.value);
+                                    }}
                                 />
                             </Grid>
 
@@ -82,6 +105,9 @@ export default function SignUp() {
                                     label='Email Address'
                                     name='email'
                                     autoComplete='email'
+                                    onChange={(e) => {
+                                        setemailReg(e.target.value);
+                                    }}
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -93,10 +119,14 @@ export default function SignUp() {
                                     type='password'
                                     id='password'
                                     autoComplete='new-password'
+                                    onChange={(e) => {
+                                        setpasswordReg(e.target.value);
+                                    }}
                                 />
                             </Grid>
                         </Grid>
                         <Button
+                            onClick={register}
                             type='submit'
                             fullWidth
                             variant='contained'

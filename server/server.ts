@@ -5,7 +5,8 @@ if (process.env.NODE_ENV !== 'production') {
 import express, { Request, Response } from 'express';
 import path from 'path';
 import db from './database/db';
-import Music from './controllers/music';
+import Music from './controllers/MusicController';
+import Users from './controllers/UserController';
 
 const PORT =
     process.env.PORT || (process.env.NODE_ENV === 'production' && 3000) || 3001;
@@ -15,6 +16,7 @@ app.set('trust proxy', 1);
 app.use(express.json()); // support json encoded bodies
 
 app.use('/api/music', Music);
+app.use('/api/users', Users);
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
