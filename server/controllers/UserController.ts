@@ -17,28 +17,27 @@ router.get('/:id', (req, res) => {
     });
 });
 
-router.post('/register', (req, res, next) => {
-    const username = req.body.username;
-    const email = req.body.email;
-    const password = req.body.password;
-    // const user = req.body;
-    username.password = bcrypt.hashSync(
-        username.password,
-        bcrypt.genSaltSync()
-    );
+router.post('/', (req, res, next) => {
+    const userObj = {
+        username: req.body.username,
+        email: req.body.email,
+        password: bcrypt.hashSync(req.body.password, bcrypt.genSaltSync()),
+    };
 
-    Users.create(username)
-        .then((user: any) => {
+    router.delete('/:id', (req, res) => {
+        Users.delete(req.params.id).then((users: any) => {
+            res.json({ status: 'tune you later' });
+        });
+    });
+
+    Users.create(userObj)
+        .then(({ password, ...user }: any) => {
             if (!user) {
                 return res.status(500).json({
                     message:
                         'Something went wrong creating the user. Please try again.',
                 });
             }
-            // const username = req.body.username;
-            // const email = req.body.email;
-            // const password = req.body.password;
-
             return res.json(user);
         })
         .catch((error: any) => {

@@ -39,7 +39,8 @@ export default function SignUp() {
 
     const register = () => {
         axios
-            .post('http://localhost:3000/api/users', {
+            // .post('http://localhost:3000/api/users', {
+            .post('/api/users', {
                 username: usernameReg,
                 email: emailReg,
                 password: passwordReg,
@@ -127,7 +128,7 @@ export default function SignUp() {
                         </Grid>
                         <Button
                             onClick={register}
-                            type='submit'
+                            type='button'
                             fullWidth
                             variant='contained'
                             sx={{ mt: 3, mb: 2 }}>
@@ -135,7 +136,7 @@ export default function SignUp() {
                         </Button>
                         <Grid container justifyContent='flex-end'>
                             <Grid item>
-                                <Link href='#' variant='body2'>
+                                <Link href='/signin' variant='body2'>
                                     Already have an account? Sign in
                                 </Link>
                             </Grid>
