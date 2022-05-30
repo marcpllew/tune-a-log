@@ -39,7 +39,6 @@ export default function SignUp() {
 
     const register = () => {
         axios
-            // .post('http://localhost:3000/api/users', {
             .post('/api/users', {
                 username: usernameReg,
                 email: emailReg,

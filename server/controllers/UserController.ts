@@ -16,7 +16,29 @@ router.get('/:id', (req, res) => {
         res.json(user);
     });
 });
+//
 
+router.post('/api/users', (req, res, next) => {
+    const userLoginObj = {
+        username: req.body.username,
+        password: req.body.password,
+    };
+
+    Users.getByUsernamePassword(userLoginObj)
+        .then(({ password, ...user }: any) => {
+            if (!user) {
+                return res.status(500).json({
+                    message: 'This User does not exist.',
+                });
+            }
+            return res.json(user);
+        })
+        .catch((error: any) => {
+            next(error);
+        });
+});
+
+//
 router.post('/', (req, res, next) => {
     const userObj = {
         username: req.body.username,

@@ -12,6 +12,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 function Copyright(props: any) {
     return (
@@ -29,15 +31,31 @@ function Copyright(props: any) {
 
 const theme = createTheme();
 
-export default function SignIn() {
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('username'),
-            password: data.get('password'),
-        });
+export default function Login() {
+    const [username, setUsername] = useState('');
+    // const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const login = () => {
+        axios
+            .post('/api/users', {
+                username: username,
+                // email: email,
+                password: password,
+            })
+            .then((response: any) => {
+                console.log(response);
+            });
     };
+
+    // const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    //     event.preventDefault();
+    //     const data = new FormData(event.currentTarget);
+    //     console.log({
+    //         email: data.get('username'),
+    //         password: data.get('password'),
+    //     });
+    // };
 
     return (
         <ThemeProvider theme={theme}>
@@ -54,12 +72,12 @@ export default function SignIn() {
                         <LockOutlinedIcon />
                     </Avatar>
                     <Typography component='h1' variant='h5'>
-                        Sign in
+                        Login
                     </Typography>
                     <Box
                         // sx={{ bgcolor: 'secondary.main' }}
                         component='form'
-                        onSubmit={handleSubmit}
+                        // onSubmit={handleSubmit}
                         noValidate
                         sx={{ mt: 1 }}>
                         <TextField
@@ -71,20 +89,22 @@ export default function SignIn() {
                             name='username'
                             autoComplete='username'
                             autoFocus
+                            onChange={(e) => {
+                                setUsername(e.target.value);
+                            }}
                         />
 
                         {/* <TextField
+                            margin='normal'
                             required
                             fullWidth
-                            id='artist_name'
-                            label='Artist Name'
-                            name='artist_name'
-                            type='text'
-                            autoComplete='artist_name'
+                            id='email'
+                            label='Email'
+                            name='email'
+                            autoComplete='email'
                             autoFocus
-                            value={searchArtist}
-                            onChange={(event: any) => {
-                                setSearchArtist(event.target.value);
+                            onChange={(e) => {
+                                setEmail(e.target.value);
                             }}
                         /> */}
 
@@ -98,6 +118,9 @@ export default function SignIn() {
                             id='password'
                             autoComplete='current-password'
                             autoFocus
+                            onChange={(e) => {
+                                setPassword(e.target.value);
+                            }}
                         />
                         {/* <FormControlLabel
                             control={
@@ -106,11 +129,12 @@ export default function SignIn() {
                             label='Remember me'
                         /> */}
                         <Button
-                            type='submit'
+                            onClick={login}
+                            type='button'
                             fullWidth
                             variant='contained'
                             sx={{ mt: 3, mb: 2 }}>
-                            Sign In
+                            Login
                         </Button>
                         <Grid container>
                             <Grid item xs>

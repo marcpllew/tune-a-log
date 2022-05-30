@@ -48,6 +48,16 @@ const Users = {
                 : null;
         });
     },
+
+    getByUsernamePassword: ({ username, password }) => {
+        const query =
+            'SELECT * FROM users WHERE username = ? AND password = ? (username, password) VALUES($1, $2) RETURNING *';
+        return db.query(query, [username, password]).then((response) => {
+            return response.rows && response.rows.length > 0
+                ? response.rows[0]
+                : null;
+        });
+    },
 };
 
 export default Users;
