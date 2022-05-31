@@ -29,7 +29,7 @@ function Copyright(props: any) {
     );
 }
 
-const theme = createTheme();
+// const theme = createTheme();
 
 export default function Login() {
     const [username, setUsername] = useState('');
@@ -38,9 +38,8 @@ export default function Login() {
 
     const login = () => {
         axios
-            .post('/api/users', {
+            .post('/api/sessions', {
                 username: username,
-                // email: email,
                 password: password,
             })
             .then((response: any) => {
@@ -58,43 +57,44 @@ export default function Login() {
     // };
 
     return (
-        <ThemeProvider theme={theme}>
-            <Container component='main' maxWidth='xs'>
-                <CssBaseline />
+        // <ThemeProvider theme={theme}>
+        <Container component='main' maxWidth='xs'>
+            <CssBaseline />
+            <Box
+                sx={{
+                    marginTop: 8,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                }}>
+                <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                    <LockOutlinedIcon />
+                </Avatar>
+                <Typography component='h1' variant='h5'>
+                    Login
+                </Typography>
                 <Box
-                    sx={{
-                        marginTop: 8,
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                    }}>
-                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                        <LockOutlinedIcon />
-                    </Avatar>
-                    <Typography component='h1' variant='h5'>
-                        Login
-                    </Typography>
-                    <Box
-                        // sx={{ bgcolor: 'secondary.main' }}
-                        component='form'
-                        // onSubmit={handleSubmit}
-                        noValidate
-                        sx={{ mt: 1 }}>
-                        <TextField
-                            margin='normal'
-                            required
-                            fullWidth
-                            id='username'
-                            label='User Name'
-                            name='username'
-                            autoComplete='username'
-                            autoFocus
-                            onChange={(e) => {
-                                setUsername(e.target.value);
-                            }}
-                        />
+                    // sx={{ bgcolor: 'secondary.main' }}
+                    component='form'
+                    // onSubmit={handleSubmit}
+                    noValidate
+                    sx={{ mt: 1 }}>
+                    <TextField
+                        margin='normal'
+                        sx={{ text: 'red' }}
+                        required
+                        fullWidth
+                        id='username'
+                        label='User Name'
+                        name='username'
+                        autoComplete='username'
+                        autoFocus
+                        onChange={(e) => {
+                            setUsername(e.target.value);
+                        }}
+                    />
 
-                        {/* <TextField
+                    {/* <TextField
                             margin='normal'
                             required
                             fullWidth
@@ -108,50 +108,50 @@ export default function Login() {
                             }}
                         /> */}
 
-                        <TextField
-                            margin='normal'
-                            required
-                            fullWidth
-                            name='password'
-                            label='Password'
-                            type='password'
-                            id='password'
-                            autoComplete='current-password'
-                            autoFocus
-                            onChange={(e) => {
-                                setPassword(e.target.value);
-                            }}
-                        />
-                        {/* <FormControlLabel
+                    <TextField
+                        margin='normal'
+                        required
+                        fullWidth
+                        name='password'
+                        label='Password'
+                        type='password'
+                        id='password'
+                        autoComplete='current-password'
+                        autoFocus
+                        onChange={(e) => {
+                            setPassword(e.target.value);
+                        }}
+                    />
+                    {/* <FormControlLabel
                             control={
                                 <Checkbox value='remember' color='primary' />
                             }
                             label='Remember me'
                         /> */}
-                        <Button
-                            onClick={login}
-                            type='button'
-                            fullWidth
-                            variant='contained'
-                            sx={{ mt: 3, mb: 2 }}>
-                            Login
-                        </Button>
-                        <Grid container>
-                            <Grid item xs>
-                                <Link href='#' variant='body2'>
-                                    Forgot password?
-                                </Link>
-                            </Grid>
-                            <Grid item>
-                                <Link href='/SignUp' variant='body2'>
-                                    Don't have an account? Sign Up
-                                </Link>
-                            </Grid>
+                    <Button
+                        onClick={login}
+                        type='button'
+                        fullWidth
+                        variant='contained'
+                        sx={{ mt: 3, mb: 2 }}>
+                        Login
+                    </Button>
+                    <Grid container>
+                        <Grid item xs>
+                            {/* <Link href='#' variant='body2'>
+                                Forgot password?
+                            </Link> */}
                         </Grid>
-                    </Box>
+                        <Grid item>
+                            <Link href='/SignUp' variant='body2'>
+                                Don't have an account? Sign Up
+                            </Link>
+                        </Grid>
+                    </Grid>
                 </Box>
-                <Copyright sx={{ mt: 8, mb: 4 }} />
-            </Container>
-        </ThemeProvider>
+            </Box>
+            <Copyright sx={{ mt: 8, mb: 4 }} />
+        </Container>
+        // </ThemeProvider>
     );
 }

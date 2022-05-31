@@ -15,6 +15,7 @@ import Brightness7Icon from '@mui/icons-material/Brightness7';
 import { red } from '@mui/material/colors';
 import SignUp from './screens/SignUp';
 import Login from './screens/Login';
+import { Logout } from '@mui/icons-material';
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
@@ -53,7 +54,8 @@ function App() {
                             <Route path='/' element={<Home />} />
                             <Route path='search' element={<Search />} />
                             <Route path='signup' element={<SignUp />} />
-                            <Route path='signin' element={<Login />} />
+                            <Route path='login' element={<Login />} />
+                            <Route path='logout' element={<Logout />} />
                             <Route
                                 path='searchInfo/:id'
                                 element={<SearchInfo />}
