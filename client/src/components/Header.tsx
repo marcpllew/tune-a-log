@@ -12,6 +12,7 @@ import Menu, { MenuProps } from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { Link } from 'react-router-dom';
+import Logout from './sessions/Logout';
 
 export default function ButtonAppBar() {
     return (
@@ -156,8 +157,18 @@ export function CustomizedMenus() {
                         style={{
                             color: 'grey',
                         }}
-                        to='/signin'>
-                        Sign In
+                        to='/login'>
+                        Login
+                    </Link>
+                </MenuItem>
+                <MenuItem onClick={Logout} disableRipple>
+                    <MusicNoteIcon />
+                    <Link
+                        style={{
+                            color: 'grey',
+                        }}
+                        to='/logout'>
+                        Logout
                     </Link>
                 </MenuItem>
             </StyledMenu>

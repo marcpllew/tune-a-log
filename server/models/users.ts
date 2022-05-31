@@ -34,10 +34,26 @@ const Users = {
         });
     },
 
+    delete: (id: any) => {
+        const query = `DELETE FROM users WHERE id = $1`;
+        return db.query(query, [id]);
+    },
+
     create: ({ username, password, email }) => {
         const query =
             'INSERT INTO users (username, password, email) VALUES($1, $2, $3) RETURNING *';
         return db.query(query, [username, password, email]).then((response) => {
+            return response.rows && response.rows.length > 0
+                ? response.rows[0]
+                : null;
+        });
+    },
+
+    getByUsernamePassword: ({ username, password }) => {
+        const query =
+            'SELECT * FROM users WHERE username = ? AND password = ? (username, password) VALUES($1, $2) RETURNING *';
+        return db.query(query, [username, password]).then((response) => {
+            console.log(username);
             return response.rows && response.rows.length > 0
                 ? response.rows[0]
                 : null;
