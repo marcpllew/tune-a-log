@@ -151,7 +151,10 @@ export function CustomizedMenus() {
                         Sign Up
                     </Link>
                 </MenuItem>
-                <MenuItem onClick={handleClose} disableRipple>
+                <MenuItem
+                    onClick={(event: any) => {
+                        Logout();
+                    }}>
                     <MusicNoteIcon />
                     <Link
                         style={{
@@ -161,7 +164,7 @@ export function CustomizedMenus() {
                         Login
                     </Link>
                 </MenuItem>
-                <MenuItem onClick={Logout} disableRipple>
+                <MenuItem onClick={handleClose} disableRipple>
                     <MusicNoteIcon />
                     <Link
                         style={{
